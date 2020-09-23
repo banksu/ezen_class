@@ -1,0 +1,27 @@
+h1 {
+  display: flex;
+  justify-content: center;
+  background-color: tomato;
+}
+
+table {
+  width: 100%;
+  margin: 30px 50px;
+  font-size: 30px;
+}
+
+table,
+tr,
+td {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.binggo {
+  width: 50%;
+  height: 50vh;
+}
+
+.number {
+}
