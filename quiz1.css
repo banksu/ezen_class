@@ -1,0 +1,49 @@
+@import "reset.css";
+
+body {
+  background-color: lightseagreen;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.box {
+  background-color: aliceblue;
+  width: 230px;
+  height: 180px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+}
+
+.box_form {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+input,
+button {
+  display: block;
+  width: 200px;
+  height: 30px;
+  margin-top: 5px;
+  border: none;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+span {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+button {
+  background-color: lightseagreen;
+  border-radius: 5px;
+  color: white;
+}

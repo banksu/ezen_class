@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      a[title] {
+        background-color: yellow;
+        text-decoration: none;
+      }
+      a[title="naver1"] {
+        color: tomato;
+        font-size: 30px;
+        font-weight: 600;
+      }
+
+      a[title="naver2"]:hover {
+        font-size: 50px;
+      }
+
+      a[title="naver"]:hover {
+        font-size: 50px;
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="https://www.naver.com" title="naver">naver</a>
+    <a href="https://www.naver.com" title="naver1">naver</a>
+    <a href="https://www.naver.com" title="naver2">naver</a>
+    <a href="https://www.naver.com" title="naver3">naver</a>
+  </body>
+</html>

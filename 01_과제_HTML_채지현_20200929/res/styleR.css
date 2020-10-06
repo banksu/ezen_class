@@ -1,0 +1,17 @@
+/* @import "reset.css"; */
+@import url("https://fonts.googleapis.com/css2?family=Poor+Story&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500;700&display=swap");
+
+body {
+  width: 35%;
+}
+
+th {
+  text-align: left;
+  width: 30%;
+}
+
+.button_box {
+  margin-top: 10px;
+  margin-left: 10px;
+}
