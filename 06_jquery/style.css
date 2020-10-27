@@ -37,6 +37,10 @@ img {
   margin-top: 40px;
   width: 50%;
 }
+.img {
+  display: flex;
+  justify-content: center;
+}
 
 .point {
   font-weight: bold;

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Travel - Home</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="jquery.js"></script>
+  </head>
+  <body>
+    <div class="title">
+      <h1>Travel</h1>
+    </div>
+    <div class="nav">
+      <ul class="nav__li">
+        <li class="nav_home">
+          <a class="point"> Home</a>
+        </li>
+        <li class="nav_seoul"><a>Seoul</a></li>
+        <li class="nav_tokyo"><a>Tokyo</a></li>
+        <li class="nav_paris"><a>Paris</a></li>
+      </ul>
+    </div>
+    <div class="img">
+      <img
+        src="https://cdn.pixabay.com/photo/2015/07/11/23/02/plane-841441_960_720.jpg"
+      />
+    </div>
+    <script>
+      $(function () {
+        $("a").on("click", function () {
+          let click_a = $(this).text();
+          console.log(click_a);
+
+          switch (click_a) {
+            case "Home":
+              $("img").attr(
+                "src",
+                "https://cdn.pixabay.com/photo/2015/07/11/23/02/plane-841441_960_720.jpg"
+              );
+              $("a").removeClass("point");
+              $(this).addClass("point");
+              break;
+            case "Seoul":
+              $("img").attr(
+                "src",
+                "https://cdn.pixabay.com/photo/2016/11/02/14/32/lotte-world-tower-1791802_960_720.jpg"
+              );
+              $("a").removeClass("point");
+              $(this).addClass("point");
+              break;
+            case "Tokyo":
+              $("img").attr(
+                "src",
+                "https://cdn.pixabay.com/photo/2020/01/31/07/23/tokyo-4807294_960_720.jpg"
+              );
+              $("a").removeClass("point");
+              $(this).addClass("point");
+              break;
+            case "Paris":
+              $("img").attr(
+                "src",
+                "https://cdn.pixabay.com/photo/2018/04/25/09/26/eiffel-tower-3349075_960_720.jpg"
+              );
+              $("a").removeClass("point");
+              $(this).addClass("point");
+              break;
+            default:
+              console.log("!!!!");
+              break;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
