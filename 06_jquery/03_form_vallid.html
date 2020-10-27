@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table,
+      tr,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      table {
+        width: 60%;
+      }
+      td {
+        text-align: center;
+      }
+      input {
+        margin: 5px;
+        width: 90%;
+      }
+    </style>
+    <script src="jquery.js"></script>
+  </head>
+
+  <body>
+    <script>
+      $(function () {
+        $("body").prepend("<table border='1'></table>");
+        $("table").append("<thead></thead>");
+        $("table").append("<tbody></tbody>");
+
+        $("thead").append("<tr></tr>");
+        $("thead > tr").append("<th></th><th></th>");
+        $("th").eq(0).text("분류");
+        $("th").eq(1).text("점수");
+
+        let subjects = ["Front-End", "Back-End", "Database", "Server"];
+
+        for (let i = 0; i < 4; i++) {
+          $("tbody").append("<tr></tr>");
+          for (let j = 0; j < 2; j++) {
+            $("tbody tr").eq(i).append("<td></td>");
+            if (j == 0) {
+              $("tbody tr").eq(i).find("td").text(subjects[i]);
+            } else {
+              $("tbody tr").eq(i).find("td").eq(j).append("<input>");
+            }
+          }
+        }
+        $("table").after("<button>결과보기</button>");
+        $(document).on("click", "button", function () {
+          let points = $("tbody tr td:last-child input");
+          let total = 0;
+          for (let p of points) {
+            total += parseInt(p.value);
+          }
+          $("button").after("<h1></h1>");
+          $("h1").text(
+            "총점 : " +
+              total +
+              " | " +
+              "평균 : " +
+              (total / points.length).toFixed(2)
+          );
+        });
+      });
+    </script>
+  </body>
+</html>
