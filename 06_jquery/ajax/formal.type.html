@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../jquery.js"></script>
+  </head>
+  <body>
+    <button id="btn">Data Misc</button>
+    <button id="btn2">Data Misc YY</button>
+    <button id="btn3">PHP</button>
+    <ul>
+      <li data-ino="1">HTML5</li>
+      <li data-ino="2">CSS3</li>
+      <li data-ino="3">JAVAscript</li>
+      <li data-ino="4">jQuery</li>
+      <li data-ino="5">Ajax</li>
+    </ul>
+    <script>
+      let data_obj = {};
+      $("#btn3").on("click", function () {
+        $.ajax({
+          url: "data_get.php",
+          type: "post",
+          data: { data_obj: JSON.stringify(data_obj) },
+          success: function () {
+            $("#ul").after("<h1>!!!!!</h1>");
+          },
+          error: function () {
+            console.log("~~~");
+          },
+        });
+      });
+      $("#btn2").on("click", function () {
+        $.each($("#ul>li"), function (idx, elm) {
+          let key = $(elm).data("ino");
+          let val = $(elm).text();
+          data_obj[key] = val;
+        });
+        let data_value = $("li:first").data("ino");
+        alert(data_value);
+      });
+    </script>
+  </body>
+</html>

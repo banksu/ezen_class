@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="06_jquery/jquery.js"></script>
+  </head>
+  <body>
+    <form action="getDatas.php" method="POST">
+      <label for="username">이름 :</label>
+      <input
+        type="text"
+        id="user_name"
+        name="uname"
+        placeholder="이름을 쓰세요"
+      />
+      <label for="nickname">별명 :</label>
+      <input
+        type="text"
+        id="nick_name"
+        name="nick"
+        placeholder="닉네임을 쓰세요"
+      />
+      <label for="password">pw :</label>
+      <input
+        type="password"
+        id="pw"
+        name="password"
+        placeholder="비밀번호을 쓰세요"
+      />
+      <label for="addres">주소 :</label>
+      <input
+        type="text"
+        id="addres"
+        name="addres"
+        placeholder="주소를 쓰세요"
+      />
+      <label for="age">나이 :</label>
+      <input type="number" id="age" name="age" placeholder="나이를 쓰세요" />
+      <label for="birth">pw :</label>
+      <input type="data" id="birth" name="birth" placeholder="생일을 쓰세요" />
+    </form>
+    <form>
+      <input type="submit" value="데이터 보내기" />
+    </form>
+    <script>
+      $("form >input[type=sumit]").on("click", function (evt) {
+        evt.preventDefault();
+        $.ajax({
+          url: "dataGet.php",
+          type: "get",
+          data: "a",
+        })
+          .done(function (result) {
+            //성공
+          })
+          .fail(function (error) {
+            //실패
+          })
+          .always(function () {
+            //항상실행
+          });
+      });
+    </script>
+  </body>
+</html>

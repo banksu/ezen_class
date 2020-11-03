@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        border: 3px solid brown;
+        margin: 20px;
+        padding: 10px;
+      }
+      table,
+      tr,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      td,
+      th {
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      학번 :
+      <input
+        type="number"
+        id="std_no"
+        min="1000"
+        max="9999"
+        value="1234"
+      /><br />
+      이름 : <input type="text" id="std_name" value="강이젠" /><br />
+      생일 : <input type="date" id="std_birth" value="2020-10-21" /><br />
+      전공 : <input type="text" id="std_major" value="WEB" /><br />
+      <button type="button" id="btn_insert">학생 입력</button>
+      <table>
+        <thead>
+          <tr>
+            <th>학번</th>
+            <th>이름</th>
+            <th>생일</th>
+            <th>전공</th>
+            <th>과목정보</th>
+          </tr>
+        </thead>
+        <tbody id="std_info"></tbody>
+      </table>
+    </div>
+    <div>
+      학번 :
+      <input
+        type="number"
+        id="std_no2"
+        min="1000"
+        max="9999"
+        value="1234"
+      /><br />
+      <button type="button" id="btn_search">학생 조회</button>
+      <button type="button" id="btn_remove">학생 삭제</button>
+      <table>
+        <thead>
+          <tr>
+            <th>학번</th>
+            <th>이름</th>
+            <th>생일</th>
+            <th>전공</th>
+            <th>과목정보</th>
+          </tr>
+        </thead>
+        <tbody id="std_info2"></tbody>
+      </table>
+    </div>
+    <div>
+      학번 :
+      <input
+        type="number"
+        id="std_no3"
+        min="1000"
+        max="9999"
+        value="1234"
+      /><br />
+      이름 : <input type="text" id="std_name3" value="강이젠" /><br />
+      생일 : <input type="date" id="std_birth3" value="2020-10-21" /><br />
+      전공 : <input type="text" id="std_major3" value="WEB" /><br />
+      <button type="button" id="btn_modify">학생 수정</button>
+    </div>
+    <script>
+      //[{학생정보객체},{학생정보객체},{학생정보객체},{학생정보객체}...]
+      //학생객체=>{학번:"?", 이름:"?"..., 과목:[1,2,3,4,5.....,total,avg,grade]}
+      var std_list = [];
+      document
+        .getElementById("btn_modify")
+        .addEventListener("click", function () {
+          let std_no = document.getElementById("std_no3").value;
+          let std_name = document.getElementById("std_name3").value;
+          let std_birth = document.getElementById("std_birth3").value;
+          let std_major = document.getElementById("std_major3").value;
+          let std_subjects = [];
+          for (let i = 0; i < 11; i++) {
+            std_subjects.push(Math.floor(Math.random() * 51) + 50);
+          }
+          for (let i = 0; i < std_list.length; i++) {
+            if (std_list[i].std_no == std_no) {
+              std_list[i].std_name = std_name;
+              std_list[i].std_birth = std_birth;
+              std_list[i].std_major = std_major;
+              std_list[i].std_subjects = std_subjects;
+
+              std_list[i].std_func = function () {
+                let total = 0;
+                for (let j = 0; j < std_list[i].std_subjects.length; j++) {
+                  total += parseInt(std_subjects[j]);
+                }
+                let avg = total / std_list[i].std_subjects.length;
+                let grade = "";
+                switch (parseInt(avg / 10)) {
+                  case 10:
+                  case 9:
+                    grade = "A";
+                    break;
+                  case 8:
+                    grade = "B";
+                    break;
+                  case 7:
+                    grade = "C";
+                    break;
+                  case 6:
+                    grade = "D";
+                    break;
+                  default:
+                    grade = "F";
+                    break;
+                }
+                std_list[i].std_subjects.push(total);
+                std_list[i].std_subjects.push(avg.toFixed(2));
+                std_list[i].std_subjects.push(grade);
+              };
+              std_list[i].std_func();
+            }
+          }
+        });
+      document
+        .getElementById("btn_remove")
+        .addEventListener("click", function () {
+          let std_no = document.getElementById("std_no2").value;
+          for (let i = 0; i < std_list.length; i++) {
+            if (std_list[i].std_no == std_no) {
+              std_list.splice(i, 1);
+            }
+          }
+        });
+      document
+        .getElementById("btn_search")
+        .addEventListener("click", function () {
+          let std_no = document.getElementById("std_no2").value;
+          let txt = "<tr>";
+          for (let std_obj of std_list) {
+            if (std_obj.std_no == std_no) {
+              for (let key in std_obj) {
+                if (key != "std_func") {
+                  txt += "<td>" + std_obj[key] + "</td>";
+                }
+              }
+            }
+          }
+          txt += "</tr>";
+          document.getElementById("std_info2").innerHTML = txt;
+        });
+      document
+        .getElementById("btn_insert")
+        .addEventListener("click", function () {
+          let std_info = {};
+          let std_no = document.getElementById("std_no").value;
+          let std_name = document.getElementById("std_name").value;
+          let std_birth = document.getElementById("std_birth").value;
+          let std_major = document.getElementById("std_major").value;
+          let std_subjects = [];
+          for (let i = 0; i < 11; i++) {
+            std_subjects.push(Math.floor(Math.random() * 51) + 50);
+          }
+          std_info.std_no = std_no;
+          std_info.std_name = std_name;
+          std_info.std_birth = std_birth;
+          std_info.std_major = std_major;
+          std_info.std_subjects = std_subjects;
+          std_info.std_func = function () {
+            let total = 0;
+            for (let point of std_subjects) {
+              total += parseInt(point);
+            }
+            let avg = total / std_subjects.length;
+            let grade = "";
+            switch (parseInt(avg / 10)) {
+              case 10:
+              case 9:
+                grade = "A";
+                break;
+              case 8:
+                grade = "B";
+                break;
+              case 7:
+                grade = "C";
+                break;
+              case 6:
+                grade = "D";
+                break;
+              default:
+                grade = "F";
+                break;
+            }
+            std_subjects.push(total);
+            std_subjects.push(avg.toFixed(2));
+            std_subjects.push(grade);
+          };
+          std_info.std_func();
+          std_list.push(std_info);
+          console.log(std_list);
+          let txt = "<tr>";
+          for (let key in std_info) {
+            if (key != "std_func") {
+              txt += "<td>" + std_info[key] + "</td>";
+            }
+          }
+          txt += "</tr>";
+          document.getElementById("std_info").innerHTML = txt;
+        });
+    </script>
+  </body>
+</html>

@@ -3,17 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-
+    <title>Solution</title>
+    <style>
+      .card.selected {
+        background-color: blue;
+      }
+    </style>
     <script src="jquery.js"></script>
-    <link rel="stylesheet" href="randomNumberBox.css" />
   </head>
   <body>
-    <input type="number" min="1" />
-    <button>Set</button>
+    <button id="startBtn">Set</button>
+    <div id="container"></div>
+    <div id="btns">
+      <button id="oddBtn">ODD</button>
+      <button id="evenBtn">EVEN</button>
+    </div>
+
     <script>
       $(function () {
-        $("div");
+        $("#oddBtn").on("click", function () {
+          for (let div of $(".card")) {
+            //console.log($(div));
+            div.classList.remove("selected");
+            if (div.innerText % 2 == 1) {
+              div.classList.add("selected");
+            }
+          }
+        });
+        $("#evenBtn").on("click", function () {
+          // $(".card"),
+          //   each(function () {
+          //     this.innerText % 2 == 0
+          //       ? this.classList.add("selected")
+          //       : this.removeClass("selected");
+          //     $(this).text % 2 == 0
+          //       ? $(this).addClass("slected")
+          //       : $(this).removeClass("selected");
+          //   });
+
+          $.each($(".card"), function () {
+            console.log(this);
+            $(this).text() % 2 == 0
+              ? $(this).addClass("selected")
+              : $(this).removeClass("selected");
+          });
+
+          //for (let div of $(".card")) {
+          //console.log($(div));
+          //$(".card").removeClass("selected");
+          //if (div.innerText % 2 == 1) {
+          // div.classList.add("selected");
+          //}
+          //}
+        });
+        $("#startBtn").on("click", function () {
+          $("#container").empty();
+          let randonNum = [];
+          for (let i = 0; i < 24; i++) {
+            randonNum[i] = Math.floor(Math.random() * 100) + 1;
+            for (let j = 0; j < i; j++) {
+              if (randonNum[i] == randonNum[j]) {
+                i--;
+                break;
+              }
+            }
+          }
+          for (let i = 0; i < randonNum.length; i++) {
+            $("#container").append("<div>" + randonNum[i] + "</div>");
+          }
+          $("#container > div").addClass("card");
+        });
       });
     </script>
   </body>
